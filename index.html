@@ -265,6 +265,8 @@
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        .close-menu { display: none; }
+
         @media (max-width: 900px) {
             .menu-toggle { display: block; }
             nav {
@@ -285,13 +287,15 @@
     <header id="header">
         <div class="logo">Razzel</div>
         <nav id="nav">
-            <a href="#collection">Flavors</a>
-            <a href="#about">About</a>
-            <a href="#journal">Journal</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
+            <div class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">&times;</div>
+            
+            <a href="#collection" onclick="document.getElementById('nav').classList.remove('active')">Flavors</a>
+            <a href="#about" onclick="document.getElementById('nav').classList.remove('active')">About</a>
+            <a href="#journal" onclick="document.getElementById('nav').classList.remove('active')">Journal</a>
+            <a href="#faq" onclick="document.getElementById('nav').classList.remove('active')">FAQ</a>
+            <a href="#contact" onclick="document.getElementById('nav').classList.remove('active')">Contact</a>
         </nav>
-        <div class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('active')">&#9776;</div>
+        <div class="menu-toggle" onclick="document.getElementById('nav').classList.add('active')">&#9776;</div>
     </header>
 
     <section class="hero">
@@ -664,6 +668,7 @@ document.querySelectorAll('.card').forEach(card => {
 </body>
 
 </html>
+
 
 
 
