@@ -662,6 +662,20 @@ document.querySelectorAll('.card').forEach(card => {
         card.style.setProperty('--mouse-y', y + '%');
     });
 });
+function submitForm() {
+    document.getElementById("contact-name").value = "";
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-message").value = "";
+
+    const msgBox = document.getElementById("form-msg");
+    msgBox.innerText = "Message sent successfully!";
+    msgBox.style.color = "#c41e3a"; 
+    msgBox.style.display = "block";
+
+    setTimeout(() => {
+        msgBox.style.display = "none";
+    }, 3000);
+}
 </script>
 
 </body>
