@@ -1,673 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Razzel – Red. Refined. Unmistakable. Cola reimagined with bold natural flavors.">
-    <meta name="google-site-verification" content="K6WIK0qrF4CEaylJNW22BIVmeW9cHBx51x0ERRbvai0" />
-    <title>Razzel – Red. Refined. Unmistakable.</title>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DKGKW7VBD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9DKGKW7VBD');
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Razzel – Red. Refined. Unmistakable. Cola reimagined with bold natural flavors.">
+    <meta name="google-site-verification" content="K6WIK0qrF4CEaylJNW22BIVmeW9cHBx51x0ERRbvai0" />
+    <title>Razzel – Red. Refined. Unmistakable.</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DKGKW7VBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9DKGKW7VBD');
+    </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --red: #C41E3A;
-            --red-dark: #A1122A;
-            --bg: #0a0a0a;
-            --text: #f0f0f0;
-            --gray: #999999;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
-        a { color: inherit; text-decoration: none; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #A1122A;
+            --bg: #0a0a0a;
+            --text: #f0f0f0;
+            --gray: #999999;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        a { color: inherit; text-decoration: none; }
 
-        #bg-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-        header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10,10,10,0.8); backdrop-filter: blur(20px);
-            transition: 0.4s; border-bottom: 1px solid rgba(196,30,58,0);
-        }
-        header.scrolled {
-            padding: 1rem 5%;
-            background: rgba(10,10,10,0.95);
-            border-bottom: 1px solid rgba(196,30,58,0.3);
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            background: linear-gradient(135deg, #C41E3A, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-        nav a {
-            margin-left: 2rem; font-weight: 400; transition: 0.3s;
-            position: relative; color: #ccc; font-size: 0.90rem;
-            letter-spacing: 1px; text-transform: uppercase;
-        }
-        nav a:hover { color: var(--red); }
-        nav a::after {
-            content: ''; position: absolute; width: 0; height: 1px;
-            bottom: -6px; left: 0; background: var(--red); transition: 0.3s;
-        }
-        nav a:hover::after { width: 100%; }
-        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,10,0.8); backdrop-filter: blur(20px);
+            transition: 0.4s; border-bottom: 1px solid rgba(196,30,58,0);
+        }
+        header.scrolled {
+            padding: 1rem 5%;
+            background: rgba(10,10,10,0.95);
+            border-bottom: 1px solid rgba(196,30,58,0.3);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #C41E3A, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        nav a {
+            margin-left: 2rem; font-weight: 400; transition: 0.3s;
+            position: relative; color: #ccc; font-size: 0.90rem;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        nav a:hover { color: var(--red); }
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: -6px; left: 0; background: var(--red); transition: 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
 
-        .content { position: relative; z-index: 1; }
+        .content { position: relative; z-index: 1; }
 
-        .hero {
-            height: 100vh; min-height: 700px;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center; padding: 0 5%;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: clamp(4rem, 10vw, 8rem);
-            letter-spacing: -3px;
-            background: linear-gradient(135deg, #fff 0%, #C41E3A 50%, #ff6b6b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-        .hero .tagline {
-            font-size: 1.4rem; color: var(--red);
-            letter-spacing: 6px; text-transform: uppercase;
-            opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s ease 0.6s forwards;
-        }
-        .hero .sub {
-            font-size: 1.1rem; max-width: 500px;
-            margin: 1.5rem auto; color: var(--gray);
-            opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s ease 0.9s forwards;
-        }
+        .hero {
+            height: 100vh; min-height: 700px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 0 5%;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #fff 0%, #C41E3A 50%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+        .hero .tagline {
+            font-size: 1.4rem; color: var(--red);
+            letter-spacing: 6px; text-transform: uppercase;
+            opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1s ease 0.6s forwards;
+        }
+        .hero .sub {
+            font-size: 1.1rem; max-width: 500px;
+            margin: 1.5rem auto; color: var(--gray);
+            opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
 
-        .btn-group {
-            display: flex; gap: 1rem; margin-top: 2rem;
-            opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s ease 1.2s forwards;
-        }
+        .btn-group {
+            display: flex; gap: 1rem; margin-top: 2rem;
+            opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1s ease 1.2s forwards;
+        }
 
-        .btn {
-            display: inline-block; 
-            padding: 1rem 2.5rem; background: transparent;
-            color: var(--red); border: 1px solid var(--red);
-            font-weight: 500; transition: 0.4s;
-            letter-spacing: 2px; text-transform: uppercase;
-            font-size: 0.85rem;
-        }
-        .btn:hover {
-            background: var(--red); color: #fff;
-            box-shadow: 0 0 30px rgba(196,30,58,0.4);
-        }
-        .btn-solid {
-            background: var(--red); color: #fff;
-        }
+        .btn {
+            display: inline-block; 
+            padding: 1rem 2.5rem; background: transparent;
+            color: var(--red); border: 1px solid var(--red);
+            font-weight: 500; transition: 0.4s;
+            letter-spacing: 2px; text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .btn:hover {
+            background: var(--red); color: #fff;
+            box-shadow: 0 0 30px rgba(196,30,58,0.4);
+        }
+        .btn-solid {
+            background: var(--red); color: #fff;
+        }
 
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .scroll-indicator {
-            position: absolute; bottom: 3rem;
-            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-            opacity: 0; animation: fadeUp 1s ease 1.5s forwards;
-        }
-        .scroll-indicator span {
-            font-size: 0.7rem; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--gray);
-        }
-        .scroll-line {
-            width: 1px; height: 40px;
-            background: linear-gradient(to bottom, var(--red), transparent);
-            animation: scrollPulse 2s ease infinite;
-        }
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
+        .scroll-indicator {
+            position: absolute; bottom: 3rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            opacity: 0; animation: fadeUp 1s ease 1.5s forwards;
+        }
+        .scroll-indicator span {
+            font-size: 0.7rem; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--gray);
+        }
+        .scroll-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--red), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
 
-        .section {
-            padding: 8rem 5%; text-align: center;
-            position: relative;
-        }
-        .section h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, var(--red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .section-sub {
-            color: var(--gray); font-size: 1.1rem;
-            max-width: 600px; margin: 0 auto 4rem;
-        }
+        .section {
+            padding: 8rem 5%; text-align: center;
+            position: relative;
+        }
+        .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-sub {
+            color: var(--gray); font-size: 1.1rem;
+            max-width: 600px; margin: 0 auto 4rem;
+        }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem; max-width: 1400px; margin: 0 auto;
-        }
-        .card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            overflow: hidden; transition: 0.5s;
-            cursor: pointer; position: relative;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        .card::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(196,30,58,0.15), transparent 60%);
-            opacity: 0; transition: opacity 0.4s;
-            pointer-events: none; z-index: 1;
-        }
-        .card:hover::before { opacity: 1; }
-        .card:hover {
-            transform: translateY(-10px) rotateX(2deg);
-            border-color: rgba(196,30,58,0.3);
-            box-shadow: 0 20px 60px rgba(196,30,58,0.1);
-        }
-        .card-img-wrap {
-            overflow: hidden; background: rgba(255,255,255,0.02);
-            position: relative;
-        }
-        .card img {
-            width: 100%; height: auto;
-            transition: 0.6s; display: block;
-            filter: brightness(0.9);
-        }
-        .card:hover img { transform: scale(1.08); filter: brightness(1); }
-        .card-info { padding: 1.5rem; }
-        .card h3 { font-size: 1.5rem; margin-bottom: 0.4rem; color: #fff; }
-        .card p { color: var(--gray); font-size: 0.9rem; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem; max-width: 1400px; margin: 0 auto;
+        }
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden; transition: 0.5s;
+            cursor: pointer; position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .card::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(196,30,58,0.15), transparent 60%);
+            opacity: 0; transition: opacity 0.4s;
+            pointer-events: none; z-index: 1;
+        }
+        .card:hover::before { opacity: 1; }
+        .card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            border-color: rgba(196,30,58,0.3);
+            box-shadow: 0 20px 60px rgba(196,30,58,0.1);
+        }
+        .card-img-wrap {
+            overflow: hidden; background: rgba(255,255,255,0.02);
+            position: relative;
+        }
+        .card img {
+            width: 100%; height: auto;
+            transition: 0.6s; display: block;
+            filter: brightness(0.9);
+        }
+        .card:hover img { transform: scale(1.08); filter: brightness(1); }
+        .card-info { padding: 1.5rem; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 0.4rem; color: #fff; }
+        .card p { color: var(--gray); font-size: 0.9rem; }
 
-        .about {
-            background: linear-gradient(180deg, transparent, rgba(196,30,58,0.05), transparent);
-        }
-        .about p {
-            max-width: 700px; margin: 1.5rem auto;
-            font-size: 1.15rem; line-height: 1.9; color: #bbb;
-        }
-        .about .highlight { color: var(--red); font-weight: 500; }
+        .about {
+            background: linear-gradient(180deg, transparent, rgba(196,30,58,0.05), transparent);
+        }
+        .about p {
+            max-width: 700px; margin: 1.5rem auto;
+            font-size: 1.15rem; line-height: 1.9; color: #bbb;
+        }
+        .about .highlight { color: var(--red); font-weight: 500; }
 
-        /* Blog Section Styles */
-        .blog-card {
-            text-align: left;
-            padding: 2rem;
-        }
-        .blog-card .date {
-            font-size: 0.8rem; color: var(--red); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; display: block;
-        }
+        /* Blog Section Styles */
+        .blog-card {
+            text-align: left;
+            padding: 2rem;
+        }
+        .blog-card .date {
+            font-size: 0.8rem; color: var(--red); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; display: block;
+        }
 
-        /* FAQ Section Styles */
-        .faq-container {
-            max-width: 800px; margin: 0 auto; text-align: left;
-        }
-        .faq-item {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 1.5rem 0;
-        }
-        .faq-item h3 {
-            font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif;
-        }
-        .faq-item p {
-            color: var(--gray); font-size: 0.95rem;
-        }
+        /* FAQ Section Styles */
+        .faq-container {
+            max-width: 800px; margin: 0 auto; text-align: left;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 0;
+        }
+        .faq-item h3 {
+            font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif;
+        }
+        .faq-item p {
+            color: var(--gray); font-size: 0.95rem;
+        }
 
-        .divider {
-            width: 60px; height: 1px; background: var(--red); margin: 3rem auto; opacity: 0.5;
-        }
+        .divider {
+            width: 60px; height: 1px; background: var(--red); margin: 3rem auto; opacity: 0.5;
+        }
 
-        footer {
-            padding: 5rem 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        footer p { color: #555; }
-        .social-links { margin: 1.5rem 0; }
-        .social-links a {
-            margin: 0 1.2rem; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: #666; transition: 0.3s;
-        }
-        .social-links a:hover { color: var(--red); }
+        footer {
+            padding: 5rem 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer p { color: #555; }
+        .social-links { margin: 1.5rem 0; }
+        .social-links a {
+            margin: 0 1.2rem; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: #666; transition: 0.3s;
+        }
+        .social-links a:hover { color: var(--red); }
 
-        .reveal {
-            opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        .close-menu { display: none; }
+        .close-menu { display: none; }
 
-        @media (max-width: 900px) {
-            .menu-toggle { display: block; }
-            nav {
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-                background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
-                padding-top: 8rem; transition: 0.5s; text-align: center;
-            }
-            nav.active { right: 0; }
-            nav a { display: block; margin: 1.5rem 0; font-size: 1.4rem; color: #fff; }
-        }
-    </style>
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
+                padding-top: 8rem; transition: 0.5s; text-align: center;
+            }
+            nav.active { right: 0; }
+            nav a { display: block; margin: 1.5rem 0; font-size: 1.4rem; color: #fff; }
+        }
+    </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
 
 <div class="content">
-    <header id="header">
-        <div class="logo">Razzel</div>
-        <nav id="nav">
-            <div class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">&times;</div>
-            
-            <a href="#collection" onclick="document.getElementById('nav').classList.remove('active')">Flavors</a>
-            <a href="#about" onclick="document.getElementById('nav').classList.remove('active')">About</a>
-            <a href="#journal" onclick="document.getElementById('nav').classList.remove('active')">Journal</a>
-            <a href="#faq" onclick="document.getElementById('nav').classList.remove('active')">FAQ</a>
-            <a href="#contact" onclick="document.getElementById('nav').classList.remove('active')">Contact</a>
-        </nav>
-        <div class="menu-toggle" onclick="document.getElementById('nav').classList.add('active')">&#9776;</div>
-    </header>
+    <header id="header">
+        <div class="logo">Razzel</div>
+        <nav id="nav">
+            <div class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">&times;</div>
+            
+            <a href="#collection" onclick="document.getElementById('nav').classList.remove('active')">Flavors</a>
+            <a href="#about" onclick="document.getElementById('nav').classList.remove('active')">About</a>
+            <a href="#journal" onclick="document.getElementById('nav').classList.remove('active')">Journal</a>
+            <a href="#faq" onclick="document.getElementById('nav').classList.remove('active')">FAQ</a>
+            <a href="#contact" onclick="document.getElementById('nav').classList.remove('active')">Contact</a>
+        </nav>
+        <div class="menu-toggle" onclick="document.getElementById('nav').classList.add('active')">&#9776;</div>
+    </header>
 
-    <section class="hero">
-        <h1>Razzel</h1>
-        <p class="tagline">Red. Refined. Unmistakable.</p>
-        <p class="sub">Cola reimagined with bold, natural fruit intensity.</p>
-        <div class="btn-group">
-            <a href="#collection" class="btn btn-solid">Shop Now</a>
-            <a href="#about" class="btn">Our Story</a>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
+    <section class="hero">
+        <h1>Razzel</h1>
+        <p class="tagline">Red. Refined. Unmistakable.</p>
+        <p class="sub">Cola reimagined with bold, natural fruit intensity.</p>
+        <div class="btn-group">
+            <a href="#collection" class="btn btn-solid">Shop Now</a>
+            <a href="#about" class="btn">Our Story</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-    <section class="section" id="collection">
-        <h2 class="reveal">Our Flavors</h2>
-        <p class="section-sub reveal">Eleven bold blends. Zero compromise.</p>
-        <div class="grid">
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/x5k65r.png" alt="Razzel Berry Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Berry Cola</h3>
-                    <p>Mixed summer berries meet classic cola depth</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/gqgz1n.png" alt="Razzel Cherry Bomb Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Cherry Bomb</h3>
-                    <p>Tart-sweet cherry explosion with cola backbone</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/e6kx44.png" alt="Razzel Blood Orange Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Blood Orange</h3>
-                    <p>Deep citrus intensity, subtly bitter finish</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/37z4tz.png" alt="Razzel Red Grape Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Red Grape</h3>
-                    <p>Rich concord grape layered over smooth cola</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/y648ue.png" alt="Razzel Watermelon Chili Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Watermelon Chili</h3>
-                    <p>Juicy watermelon with a daring chili kick</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/jb0idh.png" alt="Razzel Strawberry Vanilla Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Strawberry Vanilla</h3>
-                    <p>Creamy strawberry sweetness meets smooth vanilla</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/d35uv1.png" alt="Razzel Raspberry Lemon Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Raspberry Lemon</h3>
-                    <p>Tart raspberry balanced with bright lemon zest</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/473vs0.png" alt="Razzel Pomegranate Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Pomegranate</h3>
-                    <p>Rich, jewel-like pomegranate with deep cola notes</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/mmtolr.png" alt="Razzel Hibiscus Berry Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Hibiscus Berry</h3>
-                    <p>Floral hibiscus fused with vibrant mixed berries</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/5l0oyv.png" alt="Razzel Spiced Cherry Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Spiced Cherry</h3>
-                    <p>Warm spices embrace bold tart cherry</p>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img-wrap">
-                    <img src="https://files.catbox.moe/26coop.png" alt="Razzel Mango Chili Cola">
-                </div>
-                <div class="card-info">
-                    <h3>Mango Chili</h3>
-                    <p>Sweet tropical mango with a fiery chili finish</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="section" id="collection">
+        <h2 class="reveal">Our Flavors</h2>
+        <p class="section-sub reveal">Eleven bold blends. Zero compromise.</p>
+        <div class="grid">
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/x5k65r.png" alt="Razzel Berry Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Berry Cola</h3>
+                    <p>Mixed summer berries meet classic cola depth</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/gqgz1n.png" alt="Razzel Cherry Bomb Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Cherry Bomb</h3>
+                    <p>Tart-sweet cherry explosion with cola backbone</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/e6kx44.png" alt="Razzel Blood Orange Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Blood Orange</h3>
+                    <p>Deep citrus intensity, subtly bitter finish</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/37z4tz.png" alt="Razzel Red Grape Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Red Grape</h3>
+                    <p>Rich concord grape layered over smooth cola</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/y648ue.png" alt="Razzel Watermelon Chili Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Watermelon Chili</h3>
+                    <p>Juicy watermelon with a daring chili kick</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/jb0idh.png" alt="Razzel Strawberry Vanilla Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Strawberry Vanilla</h3>
+                    <p>Creamy strawberry sweetness meets smooth vanilla</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/d35uv1.png" alt="Razzel Raspberry Lemon Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Raspberry Lemon</h3>
+                    <p>Tart raspberry balanced with bright lemon zest</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/473vs0.png" alt="Razzel Pomegranate Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Pomegranate</h3>
+                    <p>Rich, jewel-like pomegranate with deep cola notes</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/mmtolr.png" alt="Razzel Hibiscus Berry Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Hibiscus Berry</h3>
+                    <p>Floral hibiscus fused with vibrant mixed berries</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/5l0oyv.png" alt="Razzel Spiced Cherry Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Spiced Cherry</h3>
+                    <p>Warm spices embrace bold tart cherry</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <div class="card-img-wrap">
+                    <img src="https://files.catbox.moe/26coop.png" alt="Razzel Mango Chili Cola">
+                </div>
+                <div class="card-info">
+                    <h3>Mango Chili</h3>
+                    <p>Sweet tropical mango with a fiery chili finish</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="section about" id="about">
-        <h2 class="reveal">The Razzel Philosophy</h2>
-        <div class="divider reveal"></div>
-        <p class="reveal">We believe a drink should be more than refreshment — it should be an <span class="highlight">experience</span>. Every Razzel blend starts with real fruit and perfectly balanced cola, crafted for those who refuse ordinary.</p>
-        <p class="reveal">No artificial colors. <span class="highlight">No compromise.</span></p>
-    </section>
+    <section class="section about" id="about">
+        <h2 class="reveal">The Razzel Philosophy</h2>
+        <div class="divider reveal"></div>
+        <p class="reveal">We believe a drink should be more than refreshment — it should be an <span class="highlight">experience</span>. Every Razzel blend starts with real fruit and perfectly balanced cola, crafted for those who refuse ordinary.</p>
+        <p class="reveal">No artificial colors. <span class="highlight">No compromise.</span></p>
+    </section>
 
-    <section class="section" id="journal">
-        <h2 class="reveal">The Journal</h2>
-        <p class="section-sub reveal">Latest news, culture, and mixology from Razzel.</p>
-        <div class="grid">
-            <div class="card blog-card reveal">
-                <span class="date">May 12, 2026</span>
-                <h3>5 Ways to Stay Refreshed This Summer</h3>
-                <p>Discover how to elevate your outdoor adventures with the perfect ice-cold Razzel pairings.</p>
-            </div>
-            <div class="card blog-card reveal">
-                <span class="date">April 28, 2026</span>
-                <h3>Behind the Blend: Mango Chili</h3>
-                <p>Take a deep dive into how we balance the sweet tropical notes of mango with a fiery chili finish.</p>
-            </div>
-            <div class="card blog-card reveal">
-                <span class="date">April 10, 2026</span>
-                <h3>Razzel x Urban Arts Festival</h3>
-                <p>A look back at our community event and the launch of our limited edition streetwear collaboration.</p>
-            </div>
-        </div>
-    </section>
+    <section class="section" id="journal">
+        <h2 class="reveal">The Journal</h2>
+        <p class="section-sub reveal">Latest news, culture, and mixology from Razzel.</p>
+        <div class="grid">
+            <div class="card blog-card reveal">
+                <span class="date">May 12, 2026</span>
+                <h3>5 Ways to Stay Refreshed This Summer</h3>
+                <p>Discover how to elevate your outdoor adventures with the perfect ice-cold Razzel pairings.</p>
+            </div>
+            <div class="card blog-card reveal">
+                <span class="date">April 28, 2026</span>
+                <h3>Behind the Blend: Mango Chili</h3>
+                <p>Take a deep dive into how we balance the sweet tropical notes of mango with a fiery chili finish.</p>
+            </div>
+            <div class="card blog-card reveal">
+                <span class="date">April 10, 2026</span>
+                <h3>Razzel x Urban Arts Festival</h3>
+                <p>A look back at our community event and the launch of our limited edition streetwear collaboration.</p>
+            </div>
+        </div>
+    </section>
 
-    <section class="section" id="faq">
-        <h2 class="reveal">FAQ</h2>
-        <p class="section-sub reveal">Everything you need to know about our blends.</p>
-        <div class="faq-container reveal">
-            <div class="faq-item">
-                <h3>Does Razzel contain artificial coloring?</h3>
-                <p>Never. The vibrant colors of our colas come entirely from the natural fruit extracts and botanicals we use. We strictly adhere to our "No Compromise" philosophy.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Is there caffeine in your drinks?</h3>
-                <p>Yes, our blends contain natural caffeine sourced from green coffee beans to give you that clean, sustained energy boost without the crash.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Where do you ship?</h3>
-                <p>Currently, we ship nationwide across the continental US. We are working hard to expand our international shipping capabilities soon!</p>
-            </div>
-            <div class="faq-item">
-                <h3>Are your cans recyclable?</h3>
-                <p>100%. Sustainability is key to our brand. Our aluminum cans are infinitely recyclable.</p>
-            </div>
-        </div>
-    </section>
+    <section class="section" id="faq">
+        <h2 class="reveal">FAQ</h2>
+        <p class="section-sub reveal">Everything you need to know about our blends.</p>
+        <div class="faq-container reveal">
+            <div class="faq-item">
+                <h3>Does Razzel contain artificial coloring?</h3>
+                <p>Never. The vibrant colors of our colas come entirely from the natural fruit extracts and botanicals we use. We strictly adhere to our "No Compromise" philosophy.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is there caffeine in your drinks?</h3>
+                <p>Yes, our blends contain natural caffeine sourced from green coffee beans to give you that clean, sustained energy boost without the crash.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Where do you ship?</h3>
+                <p>Currently, we ship nationwide across the continental US. We are working hard to expand our international shipping capabilities soon!</p>
+            </div>
+            <div class="faq-item">
+                <h3>Are your cans recyclable?</h3>
+                <p>100%. Sustainability is key to our brand. Our aluminum cans are infinitely recyclable.</p>
+            </div>
+        </div>
+    </section>
 
-    <footer id="contact">
-        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's Connect</h2>
-        <div style="max-width:500px; margin: 0 auto 3rem; text-align:left;">
-            <div style="margin-bottom:1.2rem;">
-                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Your Name</label>
-                <input type="text" id="contact-name" placeholder="e.g. Alex Smith" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
-            </div>
-            <div style="margin-bottom:1.2rem;">
-                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Email Address</label>
-                <input type="email" id="contact-email" placeholder="e.g. alex@email.com" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
-            </div>
-            <div style="margin-bottom:1.2rem;">
-                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Message</label>
-                <textarea id="contact-message" rows="4" placeholder="Tell us what's on your mind..." style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; resize:vertical; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
-            </div>
-            <button onclick="submitForm()" style="width:100%; padding:1rem; background:#C41E3A; color:#fff; border:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:0.3s;" onmouseover="this.style.background='#A1122A'" onmouseout="this.style.background='#C41E3A'">Send Message</button>
-            <p id="form-msg" style="margin-top:1rem; font-size:0.85rem; text-align:center; display:none;"></p>
-        </div>
-        <p style="color:#888; letter-spacing:2px; text-transform:uppercase; font-size:0.8rem;">Follow us</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/razzelspark?igsh=MjA3NHhlYjF4cjQ1">Instagram</a>
-            <a href="https://www.tiktok.com/@razzel.spark?is">TikTok</a>
-            <a href="https://www.facebook.com/share/1Cp6d2kMjH/">Facebook</a>
-        </div>
-        <p style="margin-top:2rem; font-size:0.8rem; color:#444;">&copy; 2026 Razzel. All rights reserved.</p>
-    </footer>
+    <footer id="contact">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's Connect</h2>
+        <div style="max-width:500px; margin: 0 auto 3rem; text-align:left;">
+            <div style="margin-bottom:1.2rem;">
+                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Your Name</label>
+                <input type="text" id="contact-name" placeholder="e.g. Alex Smith" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+            </div>
+            <div style="margin-bottom:1.2rem;">
+                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Email Address</label>
+                <input type="email" id="contact-email" placeholder="e.g. alex@email.com" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+            </div>
+            <div style="margin-bottom:1.2rem;">
+                <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Message</label>
+                <textarea id="contact-message" rows="4" placeholder="Tell us what's on your mind..." style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; resize:vertical; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
+            </div>
+            <button onclick="submitForm()" style="width:100%; padding:1rem; background:#C41E3A; color:#fff; border:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:0.3s;" onmouseover="this.style.background='#A1122A'" onmouseout="this.style.background='#C41E3A'">Send Message</button>
+            <p id="form-msg" style="margin-top:1rem; font-size:0.85rem; text-align:center; display:none;"></p>
+        </div>
+        <p style="color:#888; letter-spacing:2px; text-transform:uppercase; font-size:0.8rem;">Follow us</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/razzelspark?igsh=MjA3NHhlYjF4cjQ1">Instagram</a>
+            <a href="https://www.tiktok.com/@razzel.spark?is">TikTok</a>
+            <a href="https://www.facebook.com/share/1Cp6d2kMjH/">Facebook</a>
+        </div>
+        <p style="margin-top:2rem; font-size:0.8rem; color:#444;">&copy; 2026 Razzel. All rights reserved.</p>
+    </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-
+// Paste your EXACT existing Three.js animation script here.
+// I have omitted it here so it doesn't clutter the chat, but you keep your beautiful background!
 (function() {
-    const canvas = document.getElementById('bg-canvas');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const canvas = document.getElementById('bg-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 30;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
 
-    const ambientLight = new THREE.AmbientLight(0x222222);
-    scene.add(ambientLight);
+    const ambientLight = new THREE.AmbientLight(0x222222);
+    scene.add(ambientLight);
 
-    const redLight = new THREE.PointLight(0xC41E3A, 2, 80);
-    redLight.position.set(10, 10, 20);
-    scene.add(redLight);
+    const redLight = new THREE.PointLight(0xC41E3A, 2, 80);
+    redLight.position.set(10, 10, 20);
+    scene.add(redLight);
 
-    const pinkLight = new THREE.PointLight(0xff6b6b, 1.5, 60);
-    pinkLight.position.set(-15, -10, 15);
-    scene.add(pinkLight);
+    const pinkLight = new THREE.PointLight(0xff6b6b, 1.5, 60);
+    pinkLight.position.set(-15, -10, 15);
+    scene.add(pinkLight);
 
-    const whiteLight = new THREE.PointLight(0xffffff, 0.5, 100);
-    whiteLight.position.set(0, 20, 10);
-    scene.add(whiteLight);
+    const whiteLight = new THREE.PointLight(0xffffff, 0.5, 100);
+    whiteLight.position.set(0, 20, 10);
+    scene.add(whiteLight);
 
-    const objects = [];
-    const geometries = [
-        new THREE.IcosahedronGeometry(1, 0),
-        new THREE.OctahedronGeometry(1, 0),
-        new THREE.TetrahedronGeometry(1, 0),
-        new THREE.DodecahedronGeometry(0.8, 0),
-        new THREE.TorusGeometry(0.7, 0.3, 8, 16),
-        new THREE.TorusKnotGeometry(0.6, 0.2, 64, 8),
-    ];
+    const objects = [];
+    const geometries = [
+        new THREE.IcosahedronGeometry(1, 0),
+        new THREE.OctahedronGeometry(1, 0),
+        new THREE.TetrahedronGeometry(1, 0),
+        new THREE.DodecahedronGeometry(0.8, 0),
+        new THREE.TorusGeometry(0.7, 0.3, 8, 16),
+        new THREE.TorusKnotGeometry(0.6, 0.2, 64, 8),
+    ];
 
-    const material1 = new THREE.MeshPhongMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.25, wireframe: true, shininess: 100 });
-    const material2 = new THREE.MeshPhongMaterial({ color: 0xff6b6b, transparent: true, opacity: 0.15, wireframe: true, shininess: 80 });
-    const material3 = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.08, wireframe: true, shininess: 60 });
-    const materials = [material1, material2, material3];
+    const material1 = new THREE.MeshPhongMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.25, wireframe: true, shininess: 100 });
+    const material2 = new THREE.MeshPhongMaterial({ color: 0xff6b6b, transparent: true, opacity: 0.15, wireframe: true, shininess: 80 });
+    const material3 = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.08, wireframe: true, shininess: 60 });
+    const materials = [material1, material2, material3];
 
-    for (let i = 0; i < 30; i++) {
-        const geo = geometries[Math.floor(Math.random() * geometries.length)];
-        const mat = materials[Math.floor(Math.random() * materials.length)];
-        const mesh = new THREE.Mesh(geo, mat);
-        const scale = Math.random() * 2 + 0.5;
-        mesh.scale.set(scale, scale, scale);
-        mesh.position.set((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 40 - 10);
-        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
-        objects.push({ mesh, rotSpeed: { x: (Math.random() - 0.5) * 0.01, y: (Math.random() - 0.5) * 0.01, z: (Math.random() - 0.5) * 0.005 }, floatSpeed: Math.random() * 0.003 + 0.001, floatOffset: Math.random() * Math.PI * 2, originalY: mesh.position.y });
-        scene.add(mesh);
-    }
+    for (let i = 0; i < 30; i++) {
+        const geo = geometries[Math.floor(Math.random() * geometries.length)];
+        const mat = materials[Math.floor(Math.random() * materials.length)];
+        const mesh = new THREE.Mesh(geo, mat);
+        const scale = Math.random() * 2 + 0.5;
+        mesh.scale.set(scale, scale, scale);
+        mesh.position.set((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 40 - 10);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        objects.push({ mesh, rotSpeed: { x: (Math.random() - 0.5) * 0.01, y: (Math.random() - 0.5) * 0.01, z: (Math.random() - 0.5) * 0.005 }, floatSpeed: Math.random() * 0.003 + 0.001, floatOffset: Math.random() * Math.PI * 2, originalY: mesh.position.y });
+        scene.add(mesh);
+    }
 
-    const particleCount = 200;
-    const particleGeometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const particleSizes = new Float32Array(particleCount);
+    const particleCount = 200;
+    const particleGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const particleSizes = new Float32Array(particleCount);
 
-    for (let i = 0; i < particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 80;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 50 - 5;
-        particleSizes[i] = Math.random() * 3 + 1;
-    }
+    for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 80;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 50 - 5;
+        particleSizes[i] = Math.random() * 3 + 1;
+    }
 
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particleGeometry.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
-    const particleMaterial = new THREE.PointsMaterial({ color: 0xC41E3A, size: 0.08, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false });
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particles);
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particleGeometry.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
+    const particleMaterial = new THREE.PointsMaterial({ color: 0xC41E3A, size: 0.08, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false });
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
 
-    const sphereGeo = new THREE.SphereGeometry(3, 32, 32);
-    const sphereMat = new THREE.MeshPhongMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.06, wireframe: true, shininess: 200 });
-    const centralSphere = new THREE.Mesh(sphereGeo, sphereMat);
-    centralSphere.position.z = -5;
-    scene.add(centralSphere);
+    const sphereGeo = new THREE.SphereGeometry(3, 32, 32);
+    const sphereMat = new THREE.MeshPhongMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.06, wireframe: true, shininess: 200 });
+    const centralSphere = new THREE.Mesh(sphereGeo, sphereMat);
+    centralSphere.position.z = -5;
+    scene.add(centralSphere);
 
-    const ringGeo = new THREE.TorusGeometry(5, 0.05, 16, 100);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.2 });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.position.z = -5;
-    ring.rotation.x = Math.PI / 3;
-    scene.add(ring);
+    const ringGeo = new THREE.TorusGeometry(5, 0.05, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.2 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.position.z = -5;
+    ring.rotation.x = Math.PI / 3;
+    scene.add(ring);
 
-    let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
+    let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
 
-    let scrollY = 0;
-    window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+    let scrollY = 0;
+    window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
-    let time = 0;
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.01;
-        mouseX += (targetMouseX - mouseX) * 0.05;
-        mouseY += (targetMouseY - mouseY) * 0.05;
-        camera.position.x = mouseX * 3;
-        camera.position.y = -mouseY * 3 - scrollY * 0.01;
-        camera.lookAt(0, -scrollY * 0.01, 0);
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
+        camera.position.x = mouseX * 3;
+        camera.position.y = -mouseY * 3 - scrollY * 0.01;
+        camera.lookAt(0, -scrollY * 0.01, 0);
 
-        objects.forEach((obj, i) => {
-            obj.mesh.rotation.x += obj.rotSpeed.x;
-            obj.mesh.rotation.y += obj.rotSpeed.y;
-            obj.mesh.rotation.z += obj.rotSpeed.z;
-            obj.mesh.position.y = obj.originalY + Math.sin(time * 2 + obj.floatOffset) * 1.5;
-        });
+        objects.forEach((obj, i) => {
+            obj.mesh.rotation.x += obj.rotSpeed.x;
+            obj.mesh.rotation.y += obj.rotSpeed.y;
+            obj.mesh.rotation.z += obj.rotSpeed.z;
+            obj.mesh.position.y = obj.originalY + Math.sin(time * 2 + obj.floatOffset) * 1.5;
+        });
 
-        const posArray = particles.geometry.attributes.position.array;
-        for (let i = 0; i < particleCount; i++) {
-            posArray[i * 3 + 1] += 0.01;
-            if (posArray[i * 3 + 1] > 40) posArray[i * 3 + 1] = -40;
-        }
-        particles.geometry.attributes.position.needsUpdate = true;
-        particles.rotation.y = time * 0.05;
+        const posArray = particles.geometry.attributes.position.array;
+        for (let i = 0; i < particleCount; i++) {
+            posArray[i * 3 + 1] += 0.01;
+            if (posArray[i * 3 + 1] > 40) posArray[i * 3 + 1] = -40;
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
+        particles.rotation.y = time * 0.05;
 
-        centralSphere.rotation.y = time * 0.3;
-        centralSphere.rotation.x = time * 0.2;
-        centralSphere.scale.setScalar(1 + Math.sin(time * 2) * 0.05);
+        centralSphere.rotation.y = time * 0.3;
+        centralSphere.rotation.x = time * 0.2;
+        centralSphere.scale.setScalar(1 + Math.sin(time * 2) * 0.05);
 
-        ring.rotation.z = time * 0.2;
-        ring.rotation.x = Math.PI / 3 + Math.sin(time) * 0.1;
+        ring.rotation.z = time * 0.2;
+        ring.rotation.x = Math.PI / 3 + Math.sin(time) * 0.1;
 
-        redLight.position.x = 10 + mouseX * 10;
-        redLight.position.y = 10 + mouseY * 5;
-        pinkLight.position.x = -15 + mouseX * 5;
+        redLight.position.x = 10 + mouseX * 10;
+        redLight.position.y = 10 + mouseY * 5;
+        pinkLight.position.x = -15 + mouseX * 5;
 
-        renderer.render(scene, camera);
-    }
-    animate();
+        renderer.render(scene, camera);
+    }
+    animate();
 
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 })();
 
 window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
 
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
-    });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-x', x + '%');
-        card.style.setProperty('--mouse-y', y + '%');
-    });
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', x + '%');
+        card.style.setProperty('--mouse-y', y + '%');
+    });
 });
 </script>
 
 </body>
 
 </html>
-
-
-
-
-
