@@ -663,40 +663,35 @@ document.querySelectorAll('.card').forEach(card => {
     });
 });
 function submitForm() {
-    // 1. Get the text the user typed in and remove any extra spaces
     const name = document.getElementById("contact-name").value.trim();
     const email = document.getElementById("contact-email").value.trim();
     const message = document.getElementById("contact-message").value.trim();
     
     const msgBox = document.getElementById("form-msg");
 
-    // 2. Check if any of the boxes are empty
+    
     if (name === "" || email === "" || message === "") {
         msgBox.innerText = "Error: Please fill out all fields.";
-        msgBox.style.color = "#C41E3A"; // Razzel Red for the error
+        msgBox.style.color = "#C41E3A"; 
         msgBox.style.display = "block";
-        return; // This stops the code here so it doesn't send or clear the boxes!
+        return; /
     }
 
-    // 3. Check if the email looks valid (has an @ and a dot)
     if (!email.includes("@") || !email.includes(".")) {
         msgBox.innerText = "Error: Please enter a valid email address.";
-        msgBox.style.color = "#C41E3A"; // Razzel Red
+        msgBox.style.color = "#C41E3A"; 
         msgBox.style.display = "block";
         return; 
     }
 
-    // 4. If they pass the checks, clear the text boxes
     document.getElementById("contact-name").value = "";
     document.getElementById("contact-email").value = "";
     document.getElementById("contact-message").value = "";
 
-    // 5. Show the success message
     msgBox.innerText = "Message sent successfully!";
-    msgBox.style.color = "#4CAF50"; // A nice success green
+    msgBox.style.color = "#4CAF50"; 
     msgBox.style.display = "block";
 
-    // 6. Make the success message disappear after 3 seconds
     setTimeout(() => {
         msgBox.style.display = "none";
     }, 3000);
@@ -706,4 +701,5 @@ function submitForm() {
 </body>
 
 </html>
+
 
