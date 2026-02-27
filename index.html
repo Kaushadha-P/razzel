@@ -500,8 +500,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// Paste your EXACT existing Three.js animation script here.
-// I have omitted it here so it doesn't clutter the chat, but you keep your beautiful background!
+
 (function() {
     const canvas = document.getElementById('bg-canvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -662,11 +661,29 @@ document.querySelectorAll('.card').forEach(card => {
         card.style.setProperty('--mouse-y', y + '%');
     });
 });
+
+});
+
+function submitForm() {
+    document.getElementById("contact-name").value = "";
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-message").value = "";
+
+    const msgBox = document.getElementById("form-msg");
+    msgBox.innerText = "Message sent successfully!";
+    msgBox.style.color = "#4CAF50"; 
+    msgBox.style.display = "block";
+
+    setTimeout(() => {
+        msgBox.style.display = "none";
+    }, 3000);
+}
 </script>
 
 </body>
 
 </html>
+
 
 
 
