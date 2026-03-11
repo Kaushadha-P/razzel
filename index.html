@@ -475,11 +475,11 @@
         <div style="max-width:500px; margin: 0 auto 3rem; text-align:left;">
             <div style="margin-bottom:1.2rem;">
                 <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Your Name</label>
-                <input type="text" id="contact-name" placeholder="e.g. Alex Smith" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+                <input type="text" id="contact-name" placeholder="e.g. Abhisheka Perera" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
             </div>
             <div style="margin-bottom:1.2rem;">
                 <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Email Address</label>
-                <input type="email" id="contact-email" placeholder="e.g. alex@email.com" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+                <input type="email" id="contact-email" placeholder="e.g. abhi@email.com" style="width:100%; padding:0.9rem 1.2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:0.3s;" onfocus="this.style.borderColor='#C41E3A'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
             </div>
             <div style="margin-bottom:1.2rem;">
                 <label style="display:block; color:#888; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;">Message</label>
@@ -500,8 +500,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// Paste your EXACT existing Three.js animation script here.
-// I have omitted it here so it doesn't clutter the chat, but you keep your beautiful background!
+
 (function() {
     const canvas = document.getElementById('bg-canvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -663,40 +662,34 @@ document.querySelectorAll('.card').forEach(card => {
     });
 });
 function submitForm() {
-    // 1. Get the text the user typed in and remove any extra spaces
     const name = document.getElementById("contact-name").value.trim();
     const email = document.getElementById("contact-email").value.trim();
     const message = document.getElementById("contact-message").value.trim();
     
     const msgBox = document.getElementById("form-msg");
 
-    // 2. Check if any of the boxes are empty
     if (name === "" || email === "" || message === "") {
         msgBox.innerText = "Error: Please fill out all fields.";
-        msgBox.style.color = "#C41E3A"; // Razzel Red for the error
+        msgBox.style.color = "#C41E3A"; 
         msgBox.style.display = "block";
-        return; // This stops the code here so it doesn't send or clear the boxes!
+        return;
     }
 
-    // 3. Check if the email looks valid (has an @ and a dot)
     if (!email.includes("@") || !email.includes(".")) {
         msgBox.innerText = "Error: Please enter a valid email address.";
-        msgBox.style.color = "#C41E3A"; // Razzel Red
+        msgBox.style.color = "#C41E3A"; 
         msgBox.style.display = "block";
         return; 
     }
 
-    // 4. If they pass the checks, clear the text boxes
     document.getElementById("contact-name").value = "";
     document.getElementById("contact-email").value = "";
     document.getElementById("contact-message").value = "";
 
-    // 5. Show the success message
     msgBox.innerText = "Message sent successfully!";
-    msgBox.style.color = "#4CAF50"; // A nice success green
+    msgBox.style.color = "#4CAF50"; 
     msgBox.style.display = "block";
 
-    // 6. Make the success message disappear after 3 seconds
     setTimeout(() => {
         msgBox.style.display = "none";
     }, 3000);
@@ -706,6 +699,7 @@ function submitForm() {
 </body>
 
 </html>
+
 
 
 
