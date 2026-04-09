@@ -35,9 +35,6 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        .fruit { 
-            cursor: pointer; 
-        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
         a { color: inherit; text-decoration: none; }
 
@@ -634,39 +631,6 @@
 
         renderer.render(scene, camera);
     }
-    const createFruit = (color, position) => {
-            const geometry = new THREE.SphereGeometry(1, 32, 32);
-            const material = new THREE.MeshStandardMaterial({ color });
-            const fruit = new THREE.Mesh(geometry, material);
-            fruit.position.set(...position);
-            fruit.castShadow = true;
-            fruit.receiveShadow = true;
-            scene.add(fruit);
-            return fruit;
-        };
-
-        const apple = createFruit(0xff0000, [-5, 0, -10]);
-        const strawberry = createFruit(0xff6347, [0, 0, -10]);
-        const orange = createFruit(0xffa500, [5, 0, -10]);
-        const banana = createFruit(0xffff00, [10, 0, -10]);
-
-        const light = new THREE.PointLight(0xffffff, 1, 100);
-        light.position.set(50, 50, 50);
-        scene.add(light);
-        scene.add(new THREE.AmbientLight(0x404040));
-
-        camera.position.z = 5;
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-            [apple, strawberry, orange, banana].forEach(fruit => {
-                fruit.position.y += Math.sin(Date.now() * 0.001) * 0.01;
-                fruit.rotation.x += 0.01;
-                fruit.rotation.y += 0.01;
-                fruit.rotation.z += 0.01;
-            });
-            renderer.render(scene, camera);
-        };
     animate();
 
     window.addEventListener('resize', () => {
@@ -735,6 +699,7 @@ function submitForm() {
 </body>
 
 </html>
+
 
 
 
