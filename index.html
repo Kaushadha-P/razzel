@@ -222,7 +222,6 @@
         }
         .about .highlight { color: var(--red); font-weight: 500; }
 
-        /* Blog Section Styles */
         .blog-card {
             text-align: left;
             padding: 2rem;
@@ -231,7 +230,6 @@
             font-size: 0.8rem; color: var(--red); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; display: block;
         }
 
-        /* FAQ Section Styles */
         .faq-container {
             max-width: 800px; margin: 0 auto; text-align: left;
         }
@@ -288,7 +286,6 @@
         <div class="logo">Razzel</div>
         <nav id="nav">
             <div class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">&times;</div>
-            
             <a href="#collection" onclick="document.getElementById('nav').classList.remove('active')">Flavors</a>
             <a href="#about" onclick="document.getElementById('nav').classList.remove('active')">About</a>
             <a href="#journal" onclick="document.getElementById('nav').classList.remove('active')">Journal</a>
@@ -526,7 +523,76 @@
     whiteLight.position.set(0, 20, 10);
     scene.add(whiteLight);
 
+    // ─── Helper: build a can group (wireframe outline style) ───────────────────
+    function createCanGroup(opacity) {
+        const group = new THREE.Group();
+
+        // Can body — standard 355ml proportions (r≈1, h≈3.2)
+        const bodyR = 1.0;
+        const bodyH = 3.2;
+        const segments = 32;
+
+        const wireMat = new THREE.MeshPhongMaterial({
+            color: 0xC41E3A,
+            transparent: true,
+            opacity: opacity,
+            wireframe: true,
+            shininess: 120,
+        });
+
+        const edgeMat = new THREE.LineBasicMaterial({
+            color: 0xff4060,
+            transparent: true,
+            opacity: opacity * 1.4,
+        });
+
+        // Body cylinder
+        const bodyGeo = new THREE.CylinderGeometry(bodyR, bodyR, bodyH, segments, 1);
+        const body = new THREE.Mesh(bodyGeo, wireMat);
+        group.add(body);
+
+        // Top cap (slightly tapered — dome shape approximated with smaller radius)
+        const topCapR = bodyR * 0.75;
+        const topCapH = 0.5;
+        const topGeo = new THREE.CylinderGeometry(topCapR, bodyR, topCapH, segments, 1);
+        const top = new THREE.Mesh(topGeo, wireMat);
+        top.position.y = bodyH / 2 + topCapH / 2;
+        group.add(top);
+
+        // Top lid (flat disc)
+        const lidGeo = new THREE.CylinderGeometry(topCapR, topCapR, 0.08, segments, 1);
+        const lid = new THREE.Mesh(lidGeo, wireMat);
+        lid.position.y = bodyH / 2 + topCapH + 0.04;
+        group.add(lid);
+
+        // Bottom cap (slight taper inward)
+        const botCapH = 0.35;
+        const botGeo = new THREE.CylinderGeometry(bodyR, bodyR * 0.9, botCapH, segments, 1);
+        const bot = new THREE.Mesh(botGeo, wireMat);
+        bot.position.y = -bodyH / 2 - botCapH / 2;
+        group.add(bot);
+
+        // Bright outline ring at top seam
+        const ringGeoTop = new THREE.TorusGeometry(bodyR, 0.04, 8, segments);
+        const ringTop = new THREE.Mesh(ringGeoTop, new THREE.MeshBasicMaterial({ color: 0xff2244, transparent: true, opacity: opacity * 1.6 }));
+        ringTop.rotation.x = Math.PI / 2;
+        ringTop.position.y = bodyH / 2;
+        group.add(ringTop);
+
+        // Bright outline ring at bottom seam
+        const ringGeoBot = new THREE.TorusGeometry(bodyR, 0.04, 8, segments);
+        const ringBot = new THREE.Mesh(ringGeoBot, new THREE.MeshBasicMaterial({ color: 0xff2244, transparent: true, opacity: opacity * 1.6 }));
+        ringBot.rotation.x = Math.PI / 2;
+        ringBot.position.y = -bodyH / 2;
+        group.add(ringBot);
+
+        return group;
+    }
+
+    // ─── Animated objects array (shapes + cans) ───────────────────────────────
     const objects = [];
+
+    // Original geometric shapes
     const geometries = [
         new THREE.IcosahedronGeometry(1, 0),
         new THREE.OctahedronGeometry(1, 0),
@@ -541,36 +607,93 @@
     const material3 = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.08, wireframe: true, shininess: 60 });
     const materials = [material1, material2, material3];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 22; i++) {
         const geo = geometries[Math.floor(Math.random() * geometries.length)];
         const mat = materials[Math.floor(Math.random() * materials.length)];
         const mesh = new THREE.Mesh(geo, mat);
         const scale = Math.random() * 2 + 0.5;
         mesh.scale.set(scale, scale, scale);
-        mesh.position.set((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 40 - 10);
+        mesh.position.set(
+            (Math.random() - 0.5) * 60,
+            (Math.random() - 0.5) * 60,
+            (Math.random() - 0.5) * 40 - 10
+        );
         mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
-        objects.push({ mesh, rotSpeed: { x: (Math.random() - 0.5) * 0.01, y: (Math.random() - 0.5) * 0.01, z: (Math.random() - 0.5) * 0.005 }, floatSpeed: Math.random() * 0.003 + 0.001, floatOffset: Math.random() * Math.PI * 2, originalY: mesh.position.y });
+        objects.push({
+            mesh,
+            isCan: false,
+            rotSpeed: {
+                x: (Math.random() - 0.5) * 0.01,
+                y: (Math.random() - 0.5) * 0.01,
+                z: (Math.random() - 0.5) * 0.005
+            },
+            floatSpeed: Math.random() * 0.003 + 0.001,
+            floatOffset: Math.random() * Math.PI * 2,
+            originalY: mesh.position.y
+        });
         scene.add(mesh);
     }
 
+    // ─── Spawn cans scattered across the scene ────────────────────────────────
+    const canConfigs = [
+        // x,    y,    z,    scale, opacity
+        [-18,   5,  -15,   2.2,   0.30],
+        [ 18,  -3,  -12,   2.0,   0.28],
+        [-10,  -12, -20,   1.6,   0.20],
+        [ 12,   12, -18,   1.8,   0.22],
+        [-24,  -6,  -25,   1.4,   0.16],
+        [ 22,   8,  -22,   1.5,   0.18],
+        [  0,   18, -30,   2.5,   0.14],
+        [-15,   20, -28,   1.3,   0.14],
+        [ 8,   -20, -26,   1.7,   0.16],
+        [-5,    0,  -35,   3.0,   0.10],
+    ];
+
+    canConfigs.forEach(([x, y, z, scale, opacity]) => {
+        const can = createCanGroup(opacity);
+        can.scale.set(scale, scale, scale);
+        can.position.set(x, y, z);
+        // Random initial tilt so they're not all upright
+        can.rotation.set(
+            (Math.random() - 0.5) * 1.2,
+            Math.random() * Math.PI * 2,
+            (Math.random() - 0.5) * 0.8
+        );
+        objects.push({
+            mesh: can,
+            isCan: true,
+            rotSpeed: {
+                x: (Math.random() - 0.5) * 0.006,
+                y: (Math.random() - 0.5) * 0.009,
+                z: (Math.random() - 0.5) * 0.004
+            },
+            floatSpeed: Math.random() * 0.002 + 0.0008,
+            floatOffset: Math.random() * Math.PI * 2,
+            originalY: y
+        });
+        scene.add(can);
+    });
+
+    // ─── Particles ────────────────────────────────────────────────────────────
     const particleCount = 200;
     const particleGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
-    const particleSizes = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 80;
+        positions[i * 3]     = (Math.random() - 0.5) * 80;
         positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 50 - 5;
-        particleSizes[i] = Math.random() * 3 + 1;
     }
 
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particleGeometry.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
-    const particleMaterial = new THREE.PointsMaterial({ color: 0xC41E3A, size: 0.08, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false });
+    const particleMaterial = new THREE.PointsMaterial({
+        color: 0xC41E3A, size: 0.08, transparent: true, opacity: 0.6,
+        blending: THREE.AdditiveBlending, depthWrite: false
+    });
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
+    // ─── Central decorative sphere + ring ────────────────────────────────────
     const sphereGeo = new THREE.SphereGeometry(3, 32, 32);
     const sphereMat = new THREE.MeshPhongMaterial({ color: 0xC41E3A, transparent: true, opacity: 0.06, wireframe: true, shininess: 200 });
     const centralSphere = new THREE.Mesh(sphereGeo, sphereMat);
@@ -584,6 +707,7 @@
     ring.rotation.x = Math.PI / 3;
     scene.add(ring);
 
+    // ─── Mouse & scroll tracking ──────────────────────────────────────────────
     let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
     document.addEventListener('mousemove', (e) => {
         targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -593,21 +717,23 @@
     let scrollY = 0;
     window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
+    // ─── Animation loop ───────────────────────────────────────────────────────
     let time = 0;
     function animate() {
         requestAnimationFrame(animate);
         time += 0.01;
+
         mouseX += (targetMouseX - mouseX) * 0.05;
         mouseY += (targetMouseY - mouseY) * 0.05;
         camera.position.x = mouseX * 3;
         camera.position.y = -mouseY * 3 - scrollY * 0.01;
         camera.lookAt(0, -scrollY * 0.01, 0);
 
-        objects.forEach((obj, i) => {
+        objects.forEach((obj) => {
             obj.mesh.rotation.x += obj.rotSpeed.x;
             obj.mesh.rotation.y += obj.rotSpeed.y;
             obj.mesh.rotation.z += obj.rotSpeed.z;
-            obj.mesh.position.y = obj.originalY + Math.sin(time * 2 + obj.floatOffset) * 1.5;
+            obj.mesh.position.y = obj.originalY + Math.sin(time * 2 + obj.floatOffset) * (obj.isCan ? 1.2 : 1.5);
         });
 
         const posArray = particles.geometry.attributes.position.array;
@@ -640,10 +766,12 @@
     });
 })();
 
+// ─── Header scroll effect ─────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// ─── Reveal on scroll ─────────────────────────────────────────────────────
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('visible'); }
@@ -652,6 +780,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ─── Card mouse-glow effect ───────────────────────────────────────────────
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -661,45 +790,40 @@ document.querySelectorAll('.card').forEach(card => {
         card.style.setProperty('--mouse-y', y + '%');
     });
 });
-function submitForm() {
-    const name = document.getElementById("contact-name").value.trim();
-    const email = document.getElementById("contact-email").value.trim();
-    const message = document.getElementById("contact-message").value.trim();
-    
-    const msgBox = document.getElementById("form-msg");
 
-    if (name === "" || email === "" || message === "") {
+// ─── Contact form ─────────────────────────────────────────────────────────
+function submitForm() {
+    const name    = document.getElementById("contact-name").value.trim();
+    const email   = document.getElementById("contact-email").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+    const msgBox  = document.getElementById("form-msg");
+
+    if (!name || !email || !message) {
         msgBox.innerText = "Error: Please fill out all fields.";
-        msgBox.style.color = "#C41E3A"; 
+        msgBox.style.color = "#C41E3A";
+        msgBox.style.display = "block";
+        return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+        msgBox.innerText = "Error: Please enter a valid email address.";
+        msgBox.style.color = "#C41E3A";
         msgBox.style.display = "block";
         return;
     }
 
-    if (!email.includes("@") || !email.includes(".")) {
-        msgBox.innerText = "Error: Please enter a valid email address.";
-        msgBox.style.color = "#C41E3A"; 
-        msgBox.style.display = "block";
-        return; 
-    }
-
-    document.getElementById("contact-name").value = "";
-    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-name").value    = "";
+    document.getElementById("contact-email").value   = "";
     document.getElementById("contact-message").value = "";
 
     msgBox.innerText = "Message sent successfully!";
-    msgBox.style.color = "#4CAF50"; 
+    msgBox.style.color = "#4CAF50";
     msgBox.style.display = "block";
-
-    setTimeout(() => {
-        msgBox.style.display = "none";
-    }, 3000);
+    setTimeout(() => { msgBox.style.display = "none"; }, 3000);
 }
 </script>
 
 </body>
-
 </html>
-
 
 
 
